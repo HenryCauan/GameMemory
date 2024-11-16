@@ -1,0 +1,158 @@
+body {
+  background-image: url(./Planets/Serene\ Night\ Scene\ with\ Shooting\ Star.jpeg);
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 0;
+  padding: 20px;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+h3 {
+  font-size: 1.5rem;
+  margin: 10px 0;
+}
+
+#result {
+  font-weight: bold;
+}
+
+#lives {
+  margin-top: 10px;
+  font-size: 1.2rem;
+  color: white;
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  width: 90%;
+  max-width: 400px;
+  margin: 20px auto;
+}
+
+.grid img {
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6x rgb(0, 0, 0);
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+  transition: transform 0.5s;
+  /* Adiciona transição para transform */
+  transform-style: preserve-3d;
+  /* Necessário para 3D transforms */
+}
+
+.grid img.flipped {
+  transform: rotateY(180deg);
+  /* Rotaciona a carta 180 graus */
+}
+
+.card-back {
+  position: absolute;
+  backface-visibility: hidden;
+  transform: rotateY(180deg);
+  /* Face de trás começa virada */
+}
+
+.card-front {
+  position: absolute;
+  backface-visibility: hidden;
+  /* Esconde a face de trás quando a frente está visível */
+}
+
+.grid img:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 12px rgb(0, 0, 0, 0.4);
+}
+
+button {
+  font-weight: 700;
+  background-color: white;
+  color: #0978d2;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1em;
+  margin: 20px auto;
+  border-radius: 9px;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+}
+
+button:hover {
+  background-color: #61adeb;
+  color: white;
+}
+
+@media (max-width:600px) {
+  .grid img {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+.grid .card {
+  /* Adicione um seletor para a div contendo a carta */
+  width: 80px;
+  height: 80px;
+  perspective: 1000px;
+  /* para efeito 3D */
+  position: relative;
+  /* para posicionamento absoluto dos filhos */
+  cursor: pointer;
+}
+
+.card-inner {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s;
+  /* Animação de rotação */
+  transform-style: preserve-3d;
+}
+
+.card.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 10px;
+  /* Reduz o efeito de corte nos cantos */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  /* Adiciona sombra para realismo */
+
+}
+
+.card-front {
+  background-image: url("Planets/Rectangle 11.png");
+  /* Imagem da frente */
+  background-size: cover;
+  background-position: center;
+}
+
+.card-back {
+  background-position: center;
+  background-size: cover;
+}
+
+.matched .card-inner {
+  pointer-events: none;
+  /* Impede cliques em cartas pareadas */
+  transform: rotateY(0deg);
+  /* Garante que cartas pareadas fiquem na posição correta */
+  transition: none;
+  /* Remove a transição para que não haja animação quando o par for encontrado */
+}
